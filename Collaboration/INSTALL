@@ -1,0 +1,69 @@
+Installation instructions for Collaboration extension v1.3
+----------------------------------------------------------
+
+Requirements: 
+=============
+
+	MediaWiki 1.15.1 or higher
+	Semantic Mediawiki 1.5.2
+	Script Manager 1.0.1 or higher
+	ParserFunctions
+	StringFunctions
+	Variables
+	Base ontology bundle 1.0 (optional) 
+
+
+Installation:
+=============
+
+The easiest way to install CE is using the deployment framework:
+
+ smwadmin -i collaboration
+
+This installs the extension.
+
+For a manual installation, you have to copy the folder Collaboration into 
+the extensions folder of MediaWiki. Collaboration will then already work, if you 
+activate it in LocalSetting.php (see below). 
+
+Activating Collaboration
+------------------------
+
+The extension is activated by adding the following lines to LocalSettings.php:
+
+include_once('extensions/Collaboration/includes/CE_Initialize.php');
+enableCollaboration();
+
+Import of the ontology
+----------------------
+
+The Collaboration extension comes with an own small ontology to provide functionality
+for displaying and querying existing comments and some icons.
+
+For that go to Special:Import, select and upload '/extensions/Collaboration/import/collaboration.xml'
+
+To use the delivered icons you need to upload the following files in your wiki:
+'/extensions/Collaboration/skins/icons/bad_active.png'
+'/extensions/Collaboration/skins/icons/neutral_active.png'
+'/extensions/Collaboration/skins/icons/good_active.png'
+'/extensions/Collaboration/skins/icons/defaultuser.gif'
+'/extensions/Collaboration/skins/icons/Comment_icon_crystal.png'
+Please be sure that you keep the original file names.
+
+Now you can enter {{ShowComments|show=True}} to any article where you want to get a
+list of all 'related comments' and a form that allows you to enter new comments. 
+
+
+Options:
+========
+
+All configuration options are defined and described in /includes/CE_Initialize.php.
+
+To reformat the style of existing comments or of the comment form, use the provided Cascading Style Sheet in '/skins' directory.
+
+
+Notice
+======
+It's highly recommended that you do not change the css definitions for 'div.ce_result_user'
+and img#ce-cf-user-img. They are among others used to downscale the user icon. Changing or deleting
+these values could lead to unintended GUI results.
